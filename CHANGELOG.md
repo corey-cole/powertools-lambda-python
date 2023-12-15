@@ -5,8 +5,23 @@
 # Unreleased
 
 
+<a name="v2.30.1"></a>
+## [v2.30.1] - 2023-12-15
+## Maintenance
+
+* version bump
+
+
 <a name="v2.30.0"></a>
 ## [v2.30.0] - 2023-12-14
+## Bug Fixes
+
+* **docs:** make the Lambda Layer version consistent ([#3498](https://github.com/aws-powertools/powertools-lambda-python/issues/3498))
+
+## Documentation
+
+* **customer-reference:** add Transformity as a customer reference ([#3497](https://github.com/aws-powertools/powertools-lambda-python/issues/3497))
+
 ## Features
 
 * **general:** add support for Python 3.12 ([#3304](https://github.com/aws-powertools/powertools-lambda-python/issues/3304))
@@ -14,6 +29,12 @@
 ## Maintenance
 
 * version bump
+* **deps:** bump squidfunk/mkdocs-material from `876b39c` to `9af3b7e` in /docs ([#3486](https://github.com/aws-powertools/powertools-lambda-python/issues/3486))
+* **deps-dev:** bump sentry-sdk from 1.38.0 to 1.39.0 ([#3495](https://github.com/aws-powertools/powertools-lambda-python/issues/3495))
+* **deps-dev:** bump cfn-lint from 0.83.4 to 0.83.5 ([#3487](https://github.com/aws-powertools/powertools-lambda-python/issues/3487))
+* **deps-dev:** bump ruff from 0.1.7 to 0.1.8 ([#3501](https://github.com/aws-powertools/powertools-lambda-python/issues/3501))
+* **deps-dev:** bump the boto-typing group with 1 update ([#3500](https://github.com/aws-powertools/powertools-lambda-python/issues/3500))
+* **tests:** temporarily disable E2E parallelism  ([#3484](https://github.com/aws-powertools/powertools-lambda-python/issues/3484))
 
 
 <a name="v2.29.1"></a>
@@ -4146,7 +4167,8 @@
 * Merge pull request [#5](https://github.com/aws-powertools/powertools-lambda-python/issues/5) from jfuss/feat/python38
 
 
-[Unreleased]: https://github.com/aws-powertools/powertools-lambda-python/compare/v2.30.0...HEAD
+[Unreleased]: https://github.com/aws-powertools/powertools-lambda-python/compare/v2.30.1...HEAD
+[v2.30.1]: https://github.com/aws-powertools/powertools-lambda-python/compare/v2.30.0...v2.30.1
 [v2.30.0]: https://github.com/aws-powertools/powertools-lambda-python/compare/v2.29.1...v2.30.0
 [v2.29.1]: https://github.com/aws-powertools/powertools-lambda-python/compare/v2.29.0...v2.29.1
 [v2.29.0]: https://github.com/aws-powertools/powertools-lambda-python/compare/v2.28.1...v2.29.0
