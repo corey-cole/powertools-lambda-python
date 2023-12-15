@@ -1,0 +1,11 @@
+{
+    "EventType": "GetMetricData",
+    "GetMetricDataRequest": {
+        "StartTime": 1697060700,
+        "EndTime": 1697061600,
+        "Period": 300,
+        "Arguments": [
+            "serviceregistry_external_http_requests{host_cluster!=\"prod\"}"
+        ]
+    }
+}
