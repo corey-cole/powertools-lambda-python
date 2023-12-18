@@ -86,6 +86,7 @@ Log Data Event for Troubleshooting
 | [AppSync Resolver](#appsync-resolver)                                     | `AppSyncResolverEvent`                             |
 | [AWS Config Rule](#aws-config-rule)                                       | `AWSConfigRuleEvent`                               |
 | [Bedrock Agent](#bedrock-agent)                                           | `BedrockAgent`                                     |
+| [CloudWatch Custom Datasource Connector](#cloudwatch-custom-datasource-connector) | `CloudWatchCustomConnectorEvent`           |
 | [CloudWatch Dashboard Custom Widget](#cloudwatch-dashboard-custom-widget) | `CloudWatchDashboardCustomWidgetEvent`             |
 | [CloudWatch Logs](#cloudwatch-logs)                                       | `CloudWatchLogsEvent`                              |
 | [CodePipeline Job Event](#codepipeline-job)                               | `CodePipelineJobEvent`                             |
@@ -491,6 +492,39 @@ In this example, we also use the new Logger `correlation_id` and built-in `corre
 
     ```python hl_lines="2 8 10"
     --8<-- "examples/event_sources/src/bedrock_agent_event.py"
+    ```
+
+### CloudWatch Custom Datasource Connector
+
+=== "app.py"
+
+    ```python
+    from aws_lambda_powertools.utilities.data_classes import (
+        event_source,
+        CloudWatchCustomConnectorEvent,
+        GetMetricDataResponse,
+        MetricDataResult,
+    )
+
+    @event_source(data_class=CloudWatchCustomConnectorEvent)
+    def lambda_handler(event: CloudWatchCustomConnectorEvent, context):
+
+        if event.get_metric_data_request is not None:
+            timestamps, values = do_metrics_lookup(
+                event.get_metric_data_request.period,
+                event.get_metric_data_request.start_time,
+                event.get_metric_data_request.end_time,
+                event.get_metric_data_request.arguments,
+            )
+            metrics = MetricDataResult(
+                label="CPUUtilization",
+                timestamps=timestamps,
+                values=values,
+            )
+            response = GetMetricDataResponse(
+                results=[metrics],
+            )
+            return response.asdict()
     ```
 
 ### CloudWatch Dashboard Custom Widget
