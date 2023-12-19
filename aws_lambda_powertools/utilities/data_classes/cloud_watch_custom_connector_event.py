@@ -1,6 +1,6 @@
 import enum
 from dataclasses import dataclass
-from typing import List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from typing_extensions import Literal
 
@@ -22,30 +22,31 @@ class CloudWatchCustomConnectorEventType(enum.Enum):
 class GetMetricDataRequest(DictWrapper):
     @property
     def start_time(self) -> int:
-        return self.get("StartTime")
+        return self["StartTime"]
 
     @property
     def end_time(self) -> int:
-        return self.get("EndTime")
+        return self["EndTime"]
 
     @property
     def period(self) -> int:
-        return self.get("Period")
+        return self["Period"]
 
     @property
     def arguments(self) -> List[Union[str, bool, int, float]]:
-        return self.get("Arguments")
+        return self["Arguments"]
 
 
 class CloudWatchCustomConnectorEvent(DictWrapper):
     @property
     def event_type(self) -> CloudWatchCustomConnectorEventType:
-        return self.get("EventType")
+        return self["EventType"]
 
     @property
     def get_metric_data_request(self) -> Optional[GetMetricDataRequest]:
         metric_data_request = self.get("GetMetricDataRequest")
         return None if metric_data_request is None else GetMetricDataRequest(metric_data_request)
+
 
 @dataclass(repr=False, order=False)
 class MessageData:
@@ -53,12 +54,13 @@ class MessageData:
     value: Optional[str] = None
 
     def asdict(self) -> dict:
-       response = {}
-       if self.code is not None:
-           response["Code"] = self.code
-       if self.value is not None:
-           response["Value"] = self.value
-       return response
+        response = {}
+        if self.code is not None:
+            response["Code"] = self.code
+        if self.value is not None:
+            response["Value"] = self.value
+        return response
+
 
 @dataclass(repr=False, order=False)
 class MetricDataResult:
@@ -79,13 +81,14 @@ class MetricDataResult:
 
         return response
 
+
 @dataclass(repr=False, order=False)
-class GetMetricDataResponse():
+class GetMetricDataResponse:
     error: Optional[MessageData] = None
     results: Optional[List[MetricDataResult]] = None
 
     def asdict(self) -> dict:
-        response = {}
+        response: Dict[str, Any] = {}
         if self.error is not None:
             response["Error"] = self.error.asdict()
         if self.results is not None:

@@ -1,7 +1,6 @@
 from aws_lambda_powertools.utilities.data_classes import (
     CloudWatchCustomConnectorEvent,
     GetMetricDataResponse,
-    MessageData,
     MetricDataResult,
 )
 from tests.functional.utils import load_event
@@ -30,7 +29,7 @@ def test_cloud_watch_custom_connector_get_metric_data_response_event():
     result_1 = MetricDataResult(
         label="CPUUtilization",
         timestamps=[1697060700, 1697061000, 1697061300],
-        values=[ 15000, 14000, 16000 ],
+        values=[15000, 14000, 16000],
     )
     response = GetMetricDataResponse(
         results=[result_1],
